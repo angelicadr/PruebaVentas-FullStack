@@ -1,0 +1,137 @@
+/* Colores principales */
+:root {
+  --primary: #007f3f;      /* Verde Locatel */
+  --primary-dark: #00592c; /* Verde más oscuro */
+  --secondary: #ffffff;    /* Blanco */
+  --accent: #e6faec;       /* Verde muy claro */
+  --gray: #f5f5f5;
+  --text: #333;
+  --text-light: #666;
+}
+
+/* Reset */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--gray);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background: var(--primary);
+  color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1500px;
+  margin: 2rem auto;
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+h1, h2 {
+  color: var(--primary-dark);
+}
+
+/* Formularios */
+form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 5px rgba(0,127,63,0.4);
+  outline: none;
+}
+
+button {
+  grid-column: span 5;
+  padding: 12px;
+  background: var(--primary);
+  color: var(--secondary);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: var(--accent);
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  border-left: 5px solid var(--primary);
+}
+
+/* Tablas (para ventas, clientes, productos) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tr:hover {
+  background: var(--accent);
+}

@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Sistema de Ventas - API
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8000/api/v1
+paths:
+  /auth/login:
+    post:
+      summary: JWT login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Tokens emitidos
+  /customers:
+    get:
+      summary: Listar clientes
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: page
+          schema: { type: integer }
+    post:
+      summary: Crear cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCreate'
+  /customers/{id}:
+    get:
+      summary: Consultar cliente
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+    put:
+      summary: Reemplazar cliente
+    patch:
+      summary: Actualizar cliente
+    delete:
+      summary: Eliminar cliente
+  /products:
+    get:
+      summary: Listar productos
+    post:
+      summary: Crear producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreate'
+  /products/{id}:
+    get:
+      summary: Consultar producto
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+    put:
+      summary: Reemplazar producto
+    patch:
+      summary: Actualizar producto
+    delete:
+      summary: Eliminar producto
+  /sales:
+    get:
+      summary: Listar ventas por fecha
+      parameters:
+        - in: query
+          name: from
+          schema: { type: string, format: date }
+        - in: query
+          name: to
+          schema: { type: string, format: date }
+    post:
+      summary: Crear venta (cabecera + detalle)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleCreate'
+  /sales/{id}:
+    get:
+      summary: Consultar venta
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+components:
+  schemas:
+    CustomerCreate:
+      type: object
+      required: [cedula, nombre, direccion, telefono]
+      properties:
+        cedula: { type: string, example: "1032456789" }
+        nombre: { type: string, example: "María Pérez" }
+        direccion: { type: string, example: "Cra 10 # 20-30" }
+        telefono: { type: string, example: "+57 300 000 0000" }
+        email: { type: string, nullable: true, format: email }
+    ProductCreate:
+      type: object
+      required: [codigo, nombre, valor_venta, maneja_iva]
+      properties:
+        codigo: { type: string, example: "JAB-100" }
+        nombre: { type: string, example: "Jabón Neutro 200g" }
+        valor_venta: { type: number, format: float, example: 3500 }
+        maneja_iva: { type: boolean, example: true }
+        iva_porcentaje: { type: number, format: float, example: 19, nullable: true }
+    SaleItemInput:
+      type: object
+      required: [producto_id, cantidad, valor_unitario_capturado]
+      properties:
+        producto_id: { type: integer, example: 10 }
+        cantidad: { type: integer, example: 2, minimum: 1 }
+        valor_unitario_capturado: { type: number, format: float, example: 3500 }
+    SaleCreate:
+      type: object
+      required: [cliente_id, items]
+      properties:
+        cliente_id: { type: integer, example: 1 }
+        fecha: { type: string, format: date, example: "2025-08-21" }
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleItemInput'

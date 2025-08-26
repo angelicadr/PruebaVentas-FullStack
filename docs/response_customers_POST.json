@@ -1,0 +1,9 @@
+{
+  "id": 10,
+  "cedula": "123456789",
+  "nombre": "Juan Pérez",
+  "direccion": "Calle 123",
+  "telefono": "3001234567",
+  "email": "juan@test.com",
+  "created_at": "2025-08-25T23:15:51.712133Z"
+}

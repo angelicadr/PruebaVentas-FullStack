@@ -1,0 +1,38 @@
+[
+  {
+    "model": "customers.customer",
+    "pk": 1,
+    "fields": {
+      "cedula": "123",
+      "nombre": "Cliente Demo",
+      "direccion": "Calle 1",
+      "telefono": "3000000000",
+      "email": null,
+      "created_at":"2025-08-23 16:20:52"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "codigo": "JAB-100",
+      "nombre": "Jabón Neutro 200g",
+      "valor_venta": "3500.00",
+      "maneja_iva": true,
+      "iva_porcentaje": "19.00",
+      "created_at":"2025-08-23 16:20:52"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "codigo": "CEP-200",
+      "nombre": "Cepillo Dental",
+      "valor_venta": "12000.00",
+      "maneja_iva": true,
+      "iva_porcentaje": "19.00"
+      ,"created_at":"2025-08-23 16:20:52"
+    }
+  }
+]

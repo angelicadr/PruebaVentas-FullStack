@@ -1,0 +1,4 @@
+pytest
+django-pytest
+factory_boy
+django-filter

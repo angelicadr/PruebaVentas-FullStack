@@ -1,0 +1,188 @@
+{
+  "info": {
+    "name": "Ventas API",
+    "_postman_id": "d6b74f0d-1e49-4a6f-a0d8-ventas",
+    "description": "Colección para probar el API de Ventas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth / login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"admin\", \"password\": \"admin\"}"
+        }
+      }
+    },
+    {
+      "name": "Crear cliente",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/customers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "customers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cedula\": \"123\", \"nombre\": \"Cliente Demo\", \"direccion\": \"Calle 1\", \"telefono\": \"3000000000\"}"
+        }
+      }
+    },
+    {
+      "name": "Crear producto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "products"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"codigo\": \"JAB-100\", \"nombre\": \"Jab\\u00f3n Neutro 200g\", \"valor_venta\": 3500, \"maneja_iva\": true, \"iva_porcentaje\": 19}"
+        }
+      }
+    },
+    {
+      "name": "Crear venta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/sales",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "sales"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cliente_id\": 1, \"fecha\": \"2025-08-21\", \"items\": [{\"producto_id\": 1, \"cantidad\": 2, \"valor_unitario_capturado\": 3500}]}"
+        }
+      }
+    },
+    {
+      "name": "Listar ventas por fecha",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/sales?from={{from}}&to={{to}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "sales"
+          ],
+          "query": [
+            {
+              "key": "from",
+              "value": "2025-01-01"
+            },
+            {
+              "key": "to",
+              "value": "2025-12-31"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "from",
+      "value": "2025-01-01"
+    },
+    {
+      "key": "to",
+      "value": "2025-12-31"
+    }
+  ]
+}
