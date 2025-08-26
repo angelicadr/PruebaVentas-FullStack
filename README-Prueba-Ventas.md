@@ -161,10 +161,6 @@ Respuesta:
 }
 ```
 
-## SOAP (opcional)
-Servicio `VentasWS` con métodos:
-- `crearVenta(clienteId, fecha, items[])` → retorna `consecutivo` y `totalVenta`.
-- `listarVentasPorFecha(desde, hasta)` → retorna arreglo de ventas con totales.
 
 ## Extras de valor
 - Paginación y ordenación en listados.
